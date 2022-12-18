@@ -1,28 +1,41 @@
-#     rock  paper  lesbians
+#     rock  paper  scisors
 me = {'X':1, 'Y':2, 'Z':3}
 elf = {'A':1, 'B':2, 'C':3}
 my_total = 0
 
-def win(i): return me[i]+6
-def lose(i): return me[i]+0
-def draw(i): return me[i]+3
+def win(e):
+    if elf[e] == 1: 
+        return 3+6
+    elif elf[e] == 2:
+        return 1+6
+    elif elf[e] == 3:
+        return 2+6
+
+def lose(e): 
+    if elf[e] == 1: 
+        return 2+0
+    elif elf[e] == 2:
+        return 3+0
+    elif elf[e] == 3:
+        return 1+0
+
+def draw(e):
+    if elf[e] == 1: 
+        return 1+3
+    elif elf[e] == 2:
+        return 2+3
+    elif elf[e] == 3:
+        return 3+3
+
 
 with open('2_input.txt', 'r') as f:
     lines = f.readlines()
     for i in lines:
-        if me[i[2]] == elf[i[0]]:
-            my_total += draw(i[2]) 
-        elif me[i[2]] == 1 and elf[i[0]] == 2:
-            my_total += lose(i[2])
-        elif me[i[2]] == 1 and elf[i[0]] == 3:
-            my_total += win(i[2])
-        elif me[i[2]] == 2 and elf[i[0]] == 1:
-            my_total += win(i[2])
-        elif me[i[2]] == 2 and elf[i[0]] == 3:
-            my_total += lose(i[2])
-        elif me[i[2]] == 3 and elf[i[0]] == 1:
-            my_total += lose(i[2])
-        elif me[i[2]] == 3 and elf[i[0]] == 2:
-            my_total += win(i[2])
+        if i[2] == 'X': 
+            my_total+=lose(i[0])    
+        elif i[2] == 'Y':
+            my_total+=draw(i[0])
+        elif i[2] == 'Z':
+            my_total+=win(i[0])
 
 print(my_total)
